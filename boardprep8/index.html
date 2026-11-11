@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <title>BoardPrep 100 — Class 8</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">B</div><div><strong>BoardPrep <span>100</span></strong><small>CLASS 8 EDITION</small></div></div>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="nav-item active" data-page="dashboard"><span>▦</span> Dashboard</button>
+      <button class="nav-item" data-page="subjects"><span>▤</span> Subjects & Chapters</button>
+      <button class="nav-item" data-page="planner"><span>◷</span> Study Planner</button>
+      <button class="nav-item" data-page="mistakes"><span>✎</span> Mistake Book</button>
+      <div class="sidebar-bottom"><div class="offline"><i></i> Offline progress enabled</div><small>NCERT Class 8 · 2026–27 edition</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn">☰</button>
+        <div><div class="eyebrow" id="crumb">YOUR LEARNING SPACE</div><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="date-pill" id="today"></span><div class="avatar">8</div></div>
+      </header>
+
+      <section id="dashboardPage" class="page">
+        <div class="welcome panel">
+          <div><div class="eyebrow light">YOUR CLASSROOM, ORGANIZED</div><h2>Learn smarter.<br><em>Score stronger.</em></h2><p>Your Class 8 NCERT learning space — notes, solutions, practice and progress in one place.</p><button class="primary-btn" id="continueBtn">Continue learning <b>→</b></button></div>
+          <div class="welcome-art"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="book-emoji">📚</div><div class="float-card">✦ <b>One chapter</b><small>One step forward</small></div></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon orange">★</div><small>FOCUS POINTS</small><strong id="pointsTotal">0</strong><span id="focusSessionsTotal">0 completed sessions</span></div>
+          <div class="stat-card"><div class="stat-icon blue">▤</div><small>SUBJECTS</small><strong id="subjectCount">5</strong><span>Core learning areas</span></div>
+          <div class="stat-card"><div class="stat-icon purple">✓</div><small>CHAPTERS DONE</small><strong id="doneCount">0</strong><span id="chapterTotal">Across all subjects</span></div>
+          <div class="stat-card"><div class="stat-icon green">◎</div><small>TEST AVERAGE</small><strong id="averageScore">—</strong><span>Based on saved attempts</span></div>
+          <div class="stat-card"><div class="stat-icon orange">◷</div><small>STUDY STREAK</small><strong id="streak">0 days</strong><span>Keep your rhythm</span></div>
+        </div>
+        <div class="section-heading"><div><div class="eyebrow">PICK UP WHERE YOU LEFT OFF</div><h2>Your subjects</h2></div><button class="text-btn" data-goto="subjects">View all →</button></div>
+        <div class="subject-grid" id="subjectCards"></div>
+        <div class="bottom-grid">
+          <div class="panel focus-panel"><div class="panel-heading"><div><div class="eyebrow">POMODORO FOCUS</div><h3>25-minute focus session</h3></div><span class="count-chip">+50 points</span></div><div class="focus-clock" id="focusClock">25:00</div><p class="muted" id="focusStatus">Complete a full 25-minute session to earn 50 points.</p><div class="focus-actions"><button class="primary-btn" id="focusStart">Start focus</button><button class="secondary-btn" id="focusPause" disabled>Pause</button><button class="secondary-btn" id="focusReset">Reset</button></div><div class="focus-history-head"><strong>Recent sessions</strong><span id="focusHistoryCount">0 sessions</span></div><div id="focusHistory" class="focus-history"><p class="muted">Your completed sessions will appear here.</p></div></div>
+          <div class="panel"><div class="panel-heading"><div><div class="eyebrow">YOUR MOMENTUM</div><h3>Overall progress</h3></div><strong id="progressPercent">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div><p class="muted" id="progressText">Complete a chapter to start building your progress.</p></div>
+          <div class="panel quick-panel"><div class="eyebrow">QUICK ACCESS</div><h3>Make today count</h3><button data-goto="planner" class="quick-link">＋ Add a study task <b>→</b></button><button data-goto="mistakes" class="quick-link">✎ Review mistakes <b>→</b></button></div>
+        </div>
+      </section>
+
+      <section id="subjectsPage" class="page hidden">
+        <div class="page-intro"><div><div class="eyebrow">NCERT TEXTBOOK LIBRARY</div><h2>Choose a subject</h2><p>Open a chapter to access its complete learning workspace.</p></div><input id="subjectSearch" class="search" placeholder="Search subjects or chapters…"></div>
+        <div class="subject-layout"><div class="subject-list" id="subjectList"></div><div class="chapter-area"><div class="chapter-head"><div><div class="eyebrow" id="selectedBook">TEXTBOOK</div><h2 id="selectedSubject">Mathematics</h2><p id="selectedSubtitle">Ganita Prakash</p></div><span class="count-chip" id="selectedCount"></span></div><div id="chapterList" class="chapter-list"></div></div></div>
+      </section>
+
+      <section id="chapterPage" class="page hidden">
+        <button class="back-link" id="backToSubjects">← All subjects</button>
+        <div class="chapter-hero"><div><div class="eyebrow" id="chapterSubjectLabel">MATHEMATICS</div><h2 id="chapterTitle">Chapter title</h2><p id="chapterBookLabel">NCERT · Class 8</p></div><button id="markComplete" class="complete-btn">○ Mark complete</button></div>
+        <div class="tabs" id="chapterTabs">
+          <button class="tab active" data-tab="notes">✧ Write Your Own Notes</button>
+          <button class="tab" data-tab="solutions">▤ NCERT Solutions</button>
+          
+          <button class="tab" data-tab="practice">◎ 15 Practice Questions</button>
+        </div>
+        <div id="chapterContent" class="chapter-content"></div>
+      </section>
+
+      <section id="plannerPage" class="page hidden">
+        <div class="page-intro"><div><div class="eyebrow">PLAN WITH PURPOSE</div><h2>Study planner</h2><p>Break your study goals into manageable tasks.</p></div></div>
+        <div class="panel planner-form"><input id="taskInput" placeholder="e.g. Revise Chapter 2 — Science"><select id="taskSubject"></select><input id="taskDate" type="date"><button class="primary-btn" id="addTask">Add task +</button></div>
+        <div class="panel"><div class="panel-heading"><h3>Your tasks</h3><span class="count-chip" id="taskCount">0 tasks</span></div><div id="taskList" class="task-list"></div></div>
+      </section>
+
+      <section id="mistakesPage" class="page hidden">
+        <div class="page-intro"><div><div class="eyebrow">LEARN FROM EVERY ERROR</div><h2>Mistake book</h2><p>Save tricky questions and revisit them before tests.</p></div></div>
+        <div class="panel mistake-form"><select id="mistakeSubject"></select><input id="mistakeChapter" placeholder="Chapter name"><textarea id="mistakeText" placeholder="Write the question or mistake and the correct method…"></textarea><button class="primary-btn" id="addMistake">Save mistake +</button></div>
+        <div id="mistakeList" class="mistake-list"></div>
+      </section>
+
+      <footer>BoardPrep 100 · Class 8 Edition <span>Progress is saved on this device.</span></footer>
+    </main>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
